@@ -1,12 +1,18 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
+import Nav from './components/nav/nav'
+import Button from 'react-bootstrap/Button';
+import {Navbar} from 'react-bootstrap'
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
+        <Nav/>
+
         <p> TEST</p>
-      </header>
+        <Button>Test</Button>
+        <Button>Test</Button>
+
     </div>
   );
 }
