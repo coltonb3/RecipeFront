@@ -1,6 +1,6 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Container, Nav, NavDropdown , Button } from 'react-bootstrap'
 
 const Nav1 = () => {
     return (
@@ -11,8 +11,7 @@ const Nav1 = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#link">Link</Nav.Link>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+              <NavDropdown title="Filter" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -23,6 +22,12 @@ const Nav1 = () => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
+              <Container className="navForm">
+              <form className='d-flex input-group w-auto'>
+            <input type='search' className='form-control' placeholder='Search Recipes' aria-label='Search' />
+            <Button>Search</Button>
+          </form>
+          </Container>
             </Nav>
           </Navbar.Collapse>
         </Container>
