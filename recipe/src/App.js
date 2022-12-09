@@ -1,19 +1,27 @@
+import {Card, Navbar,Container,Button,Row,Col, CardGroup} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Nav from './components/nav/nav'
-import Button from 'react-bootstrap/Button';
-import {Navbar} from 'react-bootstrap'
+import Recipe from './components/recipes/recipe'
+
+
 function App() {
 
   return (
-    <div className="App">
-        <Nav/>
-
+   <Container>
+           <Nav/>
+   
         <p> TEST</p>
-        <Button>Test</Button>
-        <Button>Test</Button>
-
-    </div>
+<br/>
+    <CardGroup>
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
+      </CardGroup>
+</Container>
   );
 }
 
