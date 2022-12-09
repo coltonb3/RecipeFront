@@ -1,3 +1,17 @@
+User Stories
+
+Visitors to our recipe website can view and save recipies. They will be able to sort through recipies using different metrics like ingredients, dietary restrictions (vegan, gluten-free, allergies), etc.
+
+Users will be able to save their favorite recipes and make edits to them. They will even be able to create new recipes and submit them to the website. 
+
+Some of our stretch goals include:
+
+Using a 3rd party recipe API.
+
+A login/logout where users can log in and the site will remember their favorite recipe choices.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -70,4 +84,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-test
+
