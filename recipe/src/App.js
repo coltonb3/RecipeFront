@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {Card, Navbar,Container,Button,Row,Col, CardGroup} from 'react-bootstrap'
+import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
+import Search from './components/search/search'
 import axios from 'axios'
-
 
 const App = () => {
 
@@ -81,7 +81,7 @@ useEffect(() => {
 
 
 
-  return (
+  return ( 
    <Container>
            <Nav/>
            <CardGroup>
@@ -94,6 +94,10 @@ useEffect(() => {
           )})
         }
           </CardGroup>
+       <Search />
+       <section className='form'>
+        
+       </section>
 
 <br/>
 

@@ -12,7 +12,7 @@ const MyRecipes = (props) => {
             <div className="card card-flip">
                 <div className="front card-block">
                 <span className="card-img-top fa"></span>
-                <img src="https://www.amtrak.com/content/dam/projects/dotcom/english/public/images/heros/Route_SunsetLimited_HeroBanner_2_0,.jpg/_jcr_content/renditions/cq5dam.web.2125.1195.jpeg" alt=''/>
+                <img src={props.recipe.image} alt=''/>
           <h4 className="card-title">{props.recipe.name}</h4>
         </div>
         <div className="back card-block">
