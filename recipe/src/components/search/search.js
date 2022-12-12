@@ -35,7 +35,7 @@ const handleRandomRecipe = (event) =>{
     setRandomRecipe(event.target.value);
 }
 ///calling 3rd party api..limited on amount of times can call per day// 
-// const rando = (event) => {
+// const random = (event) => {
 // method: 'GET',
 // url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random',
 // params: {tags: '' , number: '1'},
@@ -43,7 +43,7 @@ const handleRandomRecipe = (event) =>{
 //   'X-RapidAPI-Key': '8b82edbe8cmsh897fc11d9dc323dp109647jsn5e02d5535f43',
 //   'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'        }
 // }
-//       axios.request(rando).then(function (response) {
+//       axios.request(random).then(function (response) {
 //         handleRandomRecipe([])
 //         console.log(response.data);
 //     }).catch(function (error) {

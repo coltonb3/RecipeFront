@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
 import Search from './components/search/search'
@@ -15,6 +16,7 @@ const App = () => {
   const [newImage, setNewImage] = useState ('');
   const [newAllergens, setNewAllergens] = useState ('');
   const [newFeatured, setNewFeatured] = useState (false);
+  const [newDetails, setNewDetails] = useState ('');
 
 const handleNewRecipe = (event) => {
       setRecipes (event.target.value);
@@ -23,13 +25,16 @@ const handleNewRecipe = (event) => {
   const handleNewName = (event) => {
     setNewName(event.target.value);
 }
+const handleNewDetails = (event) => {
+    setNewDetails(event.target.value);
+}
 
   const handleNewTime = (event) => {
   setNewTime (event.target.value);
 }
 
   const handleNewImage  = (event) => {
-  setNewTime (event.target.value);
+  setNewImage (event.target.value);
 }
 
   const handleNewAllergens = (event) => {
@@ -49,7 +54,8 @@ const handleNewRecipe = (event) => {
         time: newTime,
         image: newImage,
         allergens: newAllergens,
-        featured: newFeatured
+        featured: newFeatured,
+        details: newDetails
       }
     ) . then(() => {
         axios.get('http://localhost:3000/')
@@ -125,7 +131,10 @@ useEffect(() => {
         }
           </CardGroup>
        <Search />
-      
+       <section className='form'>
+        
+       </section>
+
 
 <br/>
 
