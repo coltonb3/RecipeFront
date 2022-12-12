@@ -42,7 +42,7 @@ const handleNewDetails = (event) => {
 }
 
   const handleNewFeatured = (event) => {
-  setNewFeatured (event.target.value);
+    { (event.target.checked === true) ? setNewFeatured(true) : setNewFeatured(false)}
 }
 
   const handleNewInput = (event) => {
@@ -87,6 +87,23 @@ const handleNewDetails = (event) => {
     }
   
 
+  const handleEdit = (event, recipeData)=>{
+    event.preventDefault();
+    axios.put(`http://localhost:3000/${recipeData._id}`,
+        {
+          name: newName,
+          time: newTime,
+          image: newImage,
+          allergens: newAllergens,
+          featured: newFeatured
+
+      }).then(()=>{
+            axios.get('http://localhost:3000/').then((response)=>{
+                    setRecipes(response.data)
+                })
+        })
+  };
+
     const handleDelete = (recipeData) => {
       axios.delete(`http://localhost:3000/${recipeData._id}`)
       .then(() =>{
@@ -111,45 +128,32 @@ useEffect(() => {
   return ( 
    <Container>
            <Nav/>
-           <CardGroup>
+          <CardGroup>
       {
         recipes.map((recipe) =>{
           return (
-            <React.Fragment key ={recipe._id}>
-              <MyRecipes recipe={recipe}/>
-               
-              </React.Fragment>
+            <React.Fragment key ={recipe._id}>           
+
+              
+
+              <MyRecipes recipe={recipe}
+              handleEdit={handleEdit}
+              handleNewName={handleNewName}
+              handleNewTime={handleNewTime}
+              handleNewImage={handleNewImage}
+              handleNewAllergens={handleNewAllergens}
+              handleDelete={handleDelete}
+              handleNewFeatured={handleNewFeatured} /> 
+                            </React.Fragment>
+
+
           )})
         }
-          </CardGroup>
+         </CardGroup>
+
        <Search />
-
        <section className='form'>
-        <h3>Share your favorite Recipe</h3>
-       <Form onSubmit={handleNewInput}>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="text" placeholder="Name of Recipe" onChange={handleNewName} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Cooking Time </Form.Label>
-        <Form.Control type="text" placeholder="Cooking Time" onChange={handleNewTime} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Allergens</Form.Label>
-        <Form.Control type="text" placeholder="Allergens" onChange={handleNewAllergens} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        <Form.Label>Got any pictures of the completed meal?</Form.Label>
-        <Form.Control type="text" placeholder="Image" onChange={handleNewImage} />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Any additional information we should know</Form.Label>
-        <Form.Control as="textarea" rows={3} onChange={handleNewDetails} />
-      </Form.Group>
-          <input type="submit" value="Add new recipe"/>
-    </Form>
-
+        
        </section>
 
 
