@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
 
-const Add =() => { 
+const New =() => { 
     
   return (
     <Form>
@@ -17,4 +17,4 @@ const Add =() => {
   );
 }
 
-export default Add;
+export default New; 

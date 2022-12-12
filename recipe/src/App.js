@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
 import Search from './components/search/search'
@@ -15,6 +16,7 @@ const App = () => {
   const [newImage, setNewImage] = useState ('');
   const [newAllergens, setNewAllergens] = useState ('');
   const [newFeatured, setNewFeatured] = useState (false);
+  const [newDetails, setNewDetails] = useState ('');
 
 const handleNewRecipe = (event) => {
       setRecipes (event.target.value);
@@ -23,13 +25,16 @@ const handleNewRecipe = (event) => {
   const handleNewName = (event) => {
     setNewName(event.target.value);
 }
+const handleNewDetails = (event) => {
+    setNewDetails(event.target.value);
+}
 
   const handleNewTime = (event) => {
   setNewTime (event.target.value);
 }
 
   const handleNewImage  = (event) => {
-  setNewTime (event.target.value);
+  setNewImage (event.target.value);
 }
 
   const handleNewAllergens = (event) => {
@@ -49,7 +54,8 @@ const handleNewRecipe = (event) => {
         time: newTime,
         image: newImage,
         allergens: newAllergens,
-        featured: newFeatured
+        featured: newFeatured,
+        details: newDetails
       }
     ) . then(() => {
         axios.get('http://localhost:3000/')
@@ -95,9 +101,35 @@ useEffect(() => {
         }
           </CardGroup>
        <Search />
+
        <section className='form'>
-        
+        <h3>Share your favorite Recipe</h3>
+       <Form onSubmit={handleNewInput}>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="text" placeholder="Name of Recipe" onChange={handleNewName} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Cooking Time </Form.Label>
+        <Form.Control type="text" placeholder="Cooking Time" onChange={handleNewTime} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Allergens</Form.Label>
+        <Form.Control type="text" placeholder="Allergens" onChange={handleNewAllergens} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+        <Form.Label>Got any pictures of the completed meal?</Form.Label>
+        <Form.Control type="text" placeholder="Image" onChange={handleNewImage} />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <Form.Label>Any additional information we should know</Form.Label>
+        <Form.Control as="textarea" rows={3} onChange={handleNewDetails} />
+      </Form.Group>
+          <input type="submit" value="Add new recipe"/>
+    </Form>
+
        </section>
+
 
 <br/>
 
