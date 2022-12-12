@@ -37,7 +37,7 @@ const handleNewRecipe = (event) => {
 }
 
   const handleNewFeatured = (event) => {
-  setNewFeatured (event.target.value);
+    { (event.target.checked === true) ? setNewFeatured(true) : setNewFeatured(false)}
 }
 
   const handleNewInput = (event) => {
@@ -59,8 +59,25 @@ const handleNewRecipe = (event) => {
     })
   }
 
+  const handleEdit = (event, recipeData)=>{
+    event.preventDefault();
+    axios.put(`http://localhost:3000/${recipeData._id}`,
+        {
+          name: newName,
+          time: newTime,
+          image: newImage,
+          allergens: newAllergens,
+          featured: newFeatured
+
+      }).then(()=>{
+            axios.get('http://localhost:3000/').then((response)=>{
+                    setRecipes(response.data)
+                })
+        })
+  };
+
     const handleDelete = (recipeData) => {
-      axios.delete(`http://localhost:3000/$recipeData._id}`)
+      axios.delete(`http://localhost:3000/${recipeData._id}`)
       .then(() =>{
 
           axios
@@ -89,17 +106,30 @@ useEffect(() => {
         recipes.map((recipe) =>{
           return (
             <React.Fragment key ={recipe._id}>
-              <MyRecipes recipe={recipe} />
-              </React.Fragment>
+              <MyRecipes recipe={recipe}
+              handleEdit={handleEdit}
+              handleNewName={handleNewName}
+              handleNewTime={handleNewTime}
+              handleNewImage={handleNewImage}
+              handleNewAllergens={handleNewAllergens}
+              handleDelete={handleDelete}
+              handleNewFeatured={handleNewFeatured} /> 
+              
+
+              
+            </React.Fragment>
+
+
+
           )})
         }
           </CardGroup>
        <Search />
-       <section className='form'>
-        
-       </section>
+      
 
 <br/>
+
+
 
 </Container>
   );
