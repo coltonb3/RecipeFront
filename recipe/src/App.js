@@ -64,9 +64,31 @@ const handleNewDetails = (event) => {
         })
     })
   }
+  const handleForm = (event) => {
+    event.preventDefault();
+    axios.put(
+      `https://localhost:3000//${recipes._id}`,
+           {
+                 name: newName,
+                 species: newTime,
+                 breed: newAllergens,
+                 image: newImage,
+                 details: newDetails
+             }
+         )
+
+     .then(() => {
+      newName('');
+      newTime('');
+      newAllergens('');
+      newImage('');
+      newDetails('');
+     })
+    }
+  
 
     const handleDelete = (recipeData) => {
-      axios.delete(`http://localhost:3000/$recipeData._id}`)
+      axios.delete(`http://localhost:3000/${recipeData._id}`)
       .then(() =>{
 
           axios
@@ -86,7 +108,6 @@ useEffect(() => {
 
 
 
-
   return ( 
    <Container>
            <Nav/>
@@ -95,7 +116,8 @@ useEffect(() => {
         recipes.map((recipe) =>{
           return (
             <React.Fragment key ={recipe._id}>
-              <MyRecipes recipe={recipe} />
+              <MyRecipes recipe={recipe}/>
+               
               </React.Fragment>
           )})
         }
