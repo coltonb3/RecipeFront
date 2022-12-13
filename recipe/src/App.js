@@ -177,13 +177,12 @@ useEffect(() => {
 },[])
 
 
-
-
-
   return ( 
+
 
    <>
            
+
 
     <div className="App">
       <div>
@@ -201,9 +200,7 @@ useEffect(() => {
 
       </div>
       {currentUser.username ?
-      
         <div className='loggedInDiv'>
-
        <Container>
        <Nav   handleEdit={handleEdit}
               handleNewName={handleNewName}
@@ -213,9 +210,7 @@ useEffect(() => {
               handleDelete={handleDelete}
               handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
            <Nav/>
-
           <CardGroup>
-
        {
         recipes.map((recipe) =>{
           return (
@@ -232,17 +227,15 @@ useEffect(() => {
           )})
         }
          </CardGroup>
-
        <Search />
-      
-      
+  
+
     </Container>
-    
     </div>
     :
     null
   }
-</div>
+ </div>
 </>
 );
 }
