@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import './App.css';
 
 function App(props) {
@@ -14,21 +15,25 @@ function App(props) {
     }
     props.handleCreateUser(userObj)
   }
-
+  
   return (
-    <div className="App formContainer">
-      <h1 className='formTitle'>Create an Account</h1>
-      <form onSubmit={triggerCreateUser} className='inputForm'>
-        <input type='text' placeholder='username' className='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
-        <input type='password' placeholder='password' className='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
-        {props.toggleError ?
-          <h5 className='errorMsg'>{props.errorMessage}</h5>
-          :
-          null
-        }
-        <input type='submit' value='Register' className='submitBtn'/>
-      </form>
-    </div>
+    <Form class="submit" onSubmit={triggerCreateUser} className='inputForm'>
+    <Form.Group className="mb-3" controlId="formBasic">
+    <Form.Label>Create New User</Form.Label>
+    <Form.Control type="text" placeholder="Username" class="textInput" onChange={(event)=>{setUsername(event.target.value)}}/>
+    </Form.Group>
+
+    <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" placeholder="Password" className='textInput'  onChange={(event)=> {setPassword(event.target.value)}}/>
+    </Form.Group>
+     {props.toggleError ?
+      <h5 className='errorMsg'>{props.errorMessage}</h5>
+        :
+       null
+      }
+     <Button input type='submit' value='Login' className='submitBtn'>Login</Button>
+      </Form>
   );
 }
 
