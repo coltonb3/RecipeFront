@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import LoginForm from './LoginForm'
+import NewUserForm from './NewUserForm'
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
 import Search from './components/search/search'
@@ -17,7 +19,68 @@ const App = () => {
   const [newAllergens, setNewAllergens] = useState ('');
   const [newFeatured, setNewFeatured] = useState (false);
   const [newDetails, setNewDetails] = useState ('');
- 
+
+  const [toggleLogin, setToggleLogin] = useState(true)
+  const [toggleError, setToggleError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [toggleLogout, setToggleLogout] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+  const handleCreateUser = (userObj) => {
+    axios.post('http://localhost:3000/createaccount', userObj).then((response) => {
+      if(response.data.username){
+        console.log(response);
+        setToggleError(false)
+        setErrorMessage('')
+        setCurrentUser(response.data)
+        handleToggleLogout()
+      } else {
+        setErrorMessage(response.data)
+        setToggleError(true)
+      }
+    })
+  }
+
+  const handleLogin = (userObj) => {
+      console.log(userObj);
+    axios.post('http://localhost:3000/login', userObj).then((response) => {
+      if(response.data.username){
+        console.log(response);
+        setToggleError(false)
+        setErrorMessage('')
+        setCurrentUser(response.data)
+        handleToggleLogout()
+      } else {
+        console.log(response);
+        setToggleError(true)
+        setErrorMessage(response.data)
+      }
+    })
+  }
+
+  const handleLogout = () => {
+    setCurrentUser({})
+    handleToggleLogout()
+  }
+
+  const handleToggleForm = () => {
+    setToggleError(false)
+    if(toggleLogin === true) {
+      setToggleLogin(false)
+    } else {
+      setToggleLogin(true)
+    }
+  }
+
+  const handleToggleLogout = () => {
+    if(toggleLogout) {
+      setToggleLogout(false)
+    } else {
+      setToggleLogout(true)
+    }
+  }
+
+
 const handleNewRecipe = (event) => {
       setRecipes (event.target.value);
   }
@@ -118,6 +181,7 @@ useEffect(() => {
 
 
   return ( 
+
    <Container>
            <Nav   handleEdit={handleEdit}
               handleNewName={handleNewName}
@@ -126,8 +190,32 @@ useEffect(() => {
               handleNewAllergens={handleNewAllergens}
               handleDelete={handleDelete}
               handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
+
+    <div className="App">
+      <div>
+        {toggleLogout ?
+          <button onClick={handleLogout} className='logoutBtn'>Logout</button> :
+          <div className='appFormDiv'>
+            {toggleLogin ?
+            <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
+            :
+            <NewUserForm handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
+            }
+            <button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+          </div>
+        }
+
+      </div>
+      {currentUser.username ?
+      
+        <div className='loggedInDiv'>
+
+       <Container>
+           <Nav/>
+
           <CardGroup>
-      {
+
+       {
         recipes.map((recipe) =>{
           return (
             <React.Fragment key ={recipe._id}>           
@@ -169,13 +257,15 @@ useEffect(() => {
       </Form.Group>
           <input type="submit" value="Add new recipe"/>
     </Form>
-       </section> */}
 
-
-<br/>
-
-</Container>
-  );
+    </Container>
+    
+    </div>
+    :
+    null
+  }
+</div>
+);
 }
 
 export default App;
