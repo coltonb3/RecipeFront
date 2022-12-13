@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import LoginForm from './LoginForm'
 import NewUserForm from './NewUserForm'
-
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
 import Search from './components/search/search'
 import axios from 'axios'
+import PopOut from './components/modal/modal'
 
 const App = () => {
 
@@ -84,30 +84,24 @@ const App = () => {
 const handleNewRecipe = (event) => {
       setRecipes (event.target.value);
   }
-
   const handleNewName = (event) => {
     setNewName(event.target.value);
 }
 const handleNewDetails = (event) => {
     setNewDetails(event.target.value);
 }
-
   const handleNewTime = (event) => {
   setNewTime (event.target.value);
 }
-
   const handleNewImage  = (event) => {
   setNewImage (event.target.value);
 }
-
   const handleNewAllergens = (event) => {
   setNewAllergens (event.target.value);
 }
-
   const handleNewFeatured = (event) => {
     { (event.target.checked === true) ? setNewFeatured(true) : setNewFeatured(false)}
 }
-
   const handleNewInput = (event) => {
     event.preventDefault();
     axios.post(
@@ -148,8 +142,6 @@ const handleNewDetails = (event) => {
       newDetails('');
      })
     }
-  
-
   const handleEdit = (event, recipeData)=>{
     event.preventDefault();
     axios.put(`http://localhost:3000/${recipeData._id}`,
@@ -166,7 +158,6 @@ const handleNewDetails = (event) => {
                 })
         })
   };
-
     const handleDelete = (recipeData) => {
       axios.delete(`http://localhost:3000/${recipeData._id}`)
       .then(() =>{
@@ -179,7 +170,6 @@ const handleNewDetails = (event) => {
       })
     }
 
-
 useEffect(() => {
   axios.get('http://localhost:3000/').then((response) => {
       setRecipes(response.data);
@@ -188,7 +178,18 @@ useEffect(() => {
 
 
 
+
+
   return ( 
+
+   <Container>
+           <Nav   handleEdit={handleEdit}
+              handleNewName={handleNewName}
+              handleNewTime={handleNewTime}
+              handleNewImage={handleNewImage}
+              handleNewAllergens={handleNewAllergens}
+              handleDelete={handleDelete}
+              handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
 
     <div className="App">
       <div>
@@ -211,15 +212,13 @@ useEffect(() => {
 
        <Container>
            <Nav/>
+
           <CardGroup>
 
        {
         recipes.map((recipe) =>{
           return (
             <React.Fragment key ={recipe._id}>           
-
-              
-
               <MyRecipes recipe={recipe}
               handleEdit={handleEdit}
               handleNewName={handleNewName}
@@ -229,14 +228,12 @@ useEffect(() => {
               handleDelete={handleDelete}
               handleNewFeatured={handleNewFeatured} /> 
                             </React.Fragment>
-
-
           )})
         }
          </CardGroup>
 
        <Search />
-       <section className='form'>
+       {/* <section className='form'>
        <Form onSubmit={handleNewInput}>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>Name</Form.Label>
@@ -260,8 +257,6 @@ useEffect(() => {
       </Form.Group>
           <input type="submit" value="Add new recipe"/>
     </Form>
-       </section>
-      
 
     </Container>
     
