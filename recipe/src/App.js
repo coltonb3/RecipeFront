@@ -197,6 +197,7 @@ useEffect(() => {
               handleNewAllergens={handleNewAllergens}
               handleDelete={handleDelete}
               handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
+              
            <Nav/>
           <CardGroup>
        {
