@@ -18,7 +18,7 @@ const handleClose = () => setShow(false);
         <Modal.Header closeButton>
           <Modal.Title>Edit Recipe</Modal.Title>
         </Modal.Header>
-        <Modal.Body>  <Form class="submitForm" onSubmit={ (event)=>{ props.handleEdit(event, props.recipe)}}>
+        <Modal.Body>  <Form className="submitForm" onSubmit={ (event)=>{ props.handleEdit(event, props.recipe)}}>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Name of Recipe" onChange={props.handleNewName} /><br/>
@@ -40,7 +40,7 @@ const handleClose = () => setShow(false);
               </Form>       
               </Modal.Body>
         <Modal.Footer>
-        <Button class="delete" onClick={ (event)=>{ props.handleDelete(props.recipe) } }>Delete</Button>
+        <Button className="delete" onClick={ (event)=>{ props.handleDelete(props.recipe) } }>Delete</Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
@@ -59,9 +59,9 @@ const handleClose = () => setShow(false);
         </div>
         <div className="back card-block">
         
-        <button variant="primary" onClick={handleShow}>
+        <Button type='button' variant="primary" onClick={handleShow}>
         Make Changes
-        </button>
+        </Button>
             <ul>
             <li>{props.recipe.time}</li>
             <li>{props.recipe.allergens}</li>
