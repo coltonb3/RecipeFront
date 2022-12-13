@@ -171,9 +171,15 @@ useEffect(() => {
 },[])
 
   return ( 
-    <>
+
+
+   <main>
+           
+
+
     <div className="App">
-    <div className='login'> 
+      <div className='loggedOutDiv'> 
+       
         {toggleLogout ?
           <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
           <div className='appFormDiv'>
@@ -189,41 +195,42 @@ useEffect(() => {
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>
-       <Container>
-       <Nav   handleEdit={handleEdit}
-              handleNewName={handleNewName}
-              handleNewTime={handleNewTime}
-              handleNewImage={handleNewImage}
-              handleNewAllergens={handleNewAllergens}
-              handleDelete={handleDelete}
-              handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
-           <Nav/>
-          <CardGroup>
-       {
-        recipes.map((recipe) =>{
-          return (
-            <React.Fragment key ={recipe._id}>           
-              <MyRecipes recipe={recipe}
-              handleEdit={handleEdit}
-              handleNewName={handleNewName}
-              handleNewTime={handleNewTime}
-              handleNewImage={handleNewImage}
-              handleNewAllergens={handleNewAllergens}
-              handleDelete={handleDelete}
-              handleNewFeatured={handleNewFeatured} /> 
-                            </React.Fragment>
-          )})
+           <Container>
+               <Nav   handleEdit={handleEdit}
+                      handleNewName={handleNewName}
+                      handleNewTime={handleNewTime}
+                      handleNewImage={handleNewImage}
+                      handleNewAllergens={handleNewAllergens}
+                      handleDelete={handleDelete}
+                      handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
+               <Nav/>
+              <CardGroup>
+              {recipes.map((recipe) =>{
+                  return (
+                     <React.Fragment key ={recipe._id}>           
+                        <MyRecipes recipe={recipe}
+                                   handleEdit={handleEdit}
+                                   handleNewName={handleNewName}
+                                   handleNewTime={handleNewTime}
+                                   handleNewImage={handleNewImage}
+                                   handleNewAllergens={handleNewAllergens}
+                                   handleDelete={handleDelete}
+                                   handleNewFeatured={handleNewFeatured} /> 
+                     </React.Fragment>
+                )})
+              }
+              </CardGroup>
+              <Search />
+  
+
+           </Container>
+        </div>
+          :
+          null
         }
-         </CardGroup>
-       <Search />
-    </Container>
     </div>
-    :
-    null
-  }
-</div>
-</>
-);
-}
+   </main>
+ )
+};
 
 export default App;
