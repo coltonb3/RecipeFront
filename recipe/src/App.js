@@ -170,11 +170,10 @@ useEffect(() => {
   })
 },[])
 
-
   return ( 
     <>
     <div className="App">
-      <div>
+    <div className='login'> 
         {toggleLogout ?
           <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
           <div className='appFormDiv'>
@@ -185,8 +184,8 @@ useEffect(() => {
             }
             <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
           </div>
+    
         }
-
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>
