@@ -40,7 +40,6 @@ const App = () => {
       }
     })
   }
-
   const handleLogin = (userObj) => {
       console.log(userObj);
     axios.post('http://localhost:3000/login', userObj).then((response) => {
@@ -57,12 +56,10 @@ const App = () => {
       }
     })
   }
-
   const handleLogout = () => {
     setCurrentUser({})
     handleToggleLogout()
   }
-
   const handleToggleForm = () => {
     setToggleError(false)
     if(toggleLogin === true) {
@@ -71,7 +68,6 @@ const App = () => {
       setToggleLogin(true)
     }
   }
-
   const handleToggleLogout = () => {
     if(toggleLogout) {
       setToggleLogout(false)
@@ -79,8 +75,6 @@ const App = () => {
       setToggleLogout(true)
     }
   }
-
-
 const handleNewRecipe = (event) => {
       setRecipes (event.target.value);
   }
@@ -176,7 +170,6 @@ useEffect(() => {
   })
 },[])
 
-
   return ( 
 
 
@@ -185,19 +178,19 @@ useEffect(() => {
 
 
     <div className="App">
-      <div>
+    <div className='login'> 
         {toggleLogout ?
-          <button onClick={handleLogout} className='logoutBtn'>Logout</button> :
+          <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
           <div className='appFormDiv'>
             {toggleLogin ?
             <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
             :
             <NewUserForm handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
             }
-            <button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+            <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
           </div>
+    
         }
-
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>

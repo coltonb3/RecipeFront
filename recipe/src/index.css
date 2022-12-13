@@ -16,3 +16,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.login{
+  background-image: url('https://esmmweighless.com/wp-content/uploads/2019/12/Carolyn-Cooking-Blog-768x512.jpg');
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
