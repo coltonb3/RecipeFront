@@ -171,12 +171,7 @@ useEffect(() => {
 },[])
 
   return ( 
-
-
    <main>
-           
-
-
     <div className="App">
       <div className='loggedOutDiv'> 
        
@@ -221,8 +216,6 @@ useEffect(() => {
               }
               </CardGroup>
               <Search />
-  
-
            </Container>
         </div>
           :
