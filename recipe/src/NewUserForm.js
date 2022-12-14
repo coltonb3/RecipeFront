@@ -3,7 +3,7 @@ import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-boot
 import './App.css';
 import './index.css';
 
-function App(props) {
+const User = (props) => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -43,4 +43,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default User;
