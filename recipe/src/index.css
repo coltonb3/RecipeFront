@@ -1,4 +1,5 @@
 body {
+  background-color: aliceblue;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,7 +8,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.logoutBtn {
+  position: relative;
+  top: 90px;
+}
+
+.bg {
+  background-image: url("https://esmmweighless.com/wp-content/uploads/2019/12/Carolyn-Cooking-Blog-768x512.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

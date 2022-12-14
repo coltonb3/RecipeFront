@@ -1,11 +1,51 @@
 import React, {useState, useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Container } from 'react-bootstrap'
+import {Card, Navbar, Container, Button, Row, Col, CardGroup, Form, Modal} from 'react-bootstrap'
 
 const MyRecipes = (props) => {
-  
+ 
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+
+  const handleShow = () => {
+     setShow(true)
+     console.log("click");
+  }
     return (
-        
+      <>
+     
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Recipe</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>  <Form className="submitForm" onSubmit={ (event)=>{ props.handleEdit(event, props.recipe)}}>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Name</Form.Label>
+                <Form.Control type="text" placeholder="Name of Recipe" onChange={props.handleNewName} /><br/>
+               </Form.Group>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Cooking Time </Form.Label>
+                <Form.Control type="text" placeholder="Cooking Time" onChange={props.handleNewTime} /><br/>
+               </Form.Group>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Label>Photo</Form.Label>
+                <Form.Control type="text" placeholder={props.recipe.image} onChange={props.handleNewImage}/><br/>
+                </Form.Group>
+               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"> 
+                <Form.Control type="text" placeholder="Allergens" onChange={props.handleNewAllergens} /><br/>
+               </Form.Group>
+
+                  Change Reservation Status:  <input type="checkbox" onChange={props.handleNewFeatured}/><br/> 
+              
+              </Form>       
+              </Modal.Body>
+        <Modal.Footer>
+        <Button className="delete" class="danger" onClick={ (event)=>{ props.handleDelete(props.recipe) } }>Delete</Button>
+
+            <button type="button" class="btn btn-outline-primary" onClick={ (event) => {props.handleEdit(event,props.recipe)}}>Submit Changes</button>
+        </Modal.Footer>
+      </Modal>
+    
 <div className='container'>
     <div className="row text-center">
         <div className="col-md-4 card-container">
@@ -17,20 +57,18 @@ const MyRecipes = (props) => {
         </div>
         <div className="back card-block">
             <ul>
-            <li>{props.recipe.time}</li>
-            <li>{props.recipe.allergens}</li>
+            <li>Approximate time to cook...{props.recipe.time}</li>
+            <li>Allergens to be mindful of .. {props.recipe.allergens}</li>
             </ul>
-        {/* delete button works within the flip card show more works to trigger modal can not push data  */}
-        {/* <button onClick={ () =>{props.handleDelete(props.location)}}>Delete</button>
-        <button className='showMore' onClick={() =>{handleShowModal()}}>Show More</button>
-        {showModal ? <Modal location={props.location} setLocation={props.setLocation} showModal={showModal} handleCloseModal={handleCloseModal} handleForm={props.handleForm} />: ''} */}
-      <>  </>
-        {/* <Edit location={props.location} setLocation={props.setLocation}/>  */}
+            <button type='button' class="btn btn-outline-primary" onClick={handleShow}>
+        Make Changes
+        </button>
         </div>
       </div>
     </div>
   </div>
 </div>
+</>
     )
 }
 export default MyRecipes;
