@@ -56,7 +56,10 @@ const App = () => {
       }
     })
   }
-
+  const handleLogout = () => {
+    setCurrentUser({})
+    handleToggleLogout()
+  }
   const handleToggleForm = () => {
     setToggleError(false)
     if(toggleLogin === true) {
@@ -65,15 +68,11 @@ const App = () => {
       setToggleLogin(true)
     }
   }
-  const handleToggleLogout = (userObj) => {
-    console.log(userObj)
-    if(userObj === true) {
-      
+  const handleToggleLogout = () => {
+    if(toggleLogout) {
       setToggleLogout(false)
-      setCurrentUser({})
     } else {
       setToggleLogout(true)
-      
     }
   }
 const handleNewRecipe = (event) => {
@@ -182,7 +181,7 @@ useEffect(() => {
       <div className='loggedOutDiv'> 
        
       {toggleLogout ?
-          null :
+          <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
           
           <div className='appFormDiv'>
             {toggleLogin ?
@@ -192,21 +191,28 @@ useEffect(() => {
             }
             <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
           </div>
-}
-        
+    
+      }
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>
            <Container>
-               <Nav   handleEdit={handleEdit}
+           {recipes.map((recipe) =>{
+                  return (
+                    <React.Fragment key ={recipe._id}>  
+               <Nav   
+                      recipe={recipe}
+                      handleEdit={handleEdit}
                       handleNewName={handleNewName}
                       handleNewTime={handleNewTime}
                       handleNewImage={handleNewImage}
                       handleNewAllergens={handleNewAllergens}
                       handleDelete={handleDelete}
-                      handleToggleLogout={handleToggleLogout}
+                      handleLogout={handleLogout}
                       handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
-               <Nav/>
+               </React.Fragment>
+               )
+               })}
               <CardGroup>
               {recipes.map((recipe) =>{
                   return (

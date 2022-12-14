@@ -7,22 +7,29 @@ import PopOut from '../modal/modal'
 const Nav1 = (props) => {
  
   const [show, setShow] = useState(false);
-  const [logout, setTrue] = useState('');
+  const [search, setSearch] = useState('');
+  const [results, setResults] = useState('');
+
   const handleClose = () => setShow(false);
   
     const handleShow = () => {
        setShow(true)
-       console.log("click"); 
+       console.log("click");
     }
-    const handleLogout = (event) => {
-      event.preventDefault() 
-        let userObj = {
-          logout: true
-          
-        }
+
+    const handleNewSearch = (event) => {
+      setSearch(event.target.value);
+    }
+
+    const returnNewSearch = (event, data) =>{
+      console.log(data)
+      // { search === data ? setResults(data) : null}
       
-      props.handleToggleLogout(userObj)
     }
+
+
+
+    
 
     return (
       <div>
@@ -40,18 +47,17 @@ const Nav1 = (props) => {
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#">Add a Recipe</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item>
-                <Button onClick={handleLogout}>Logout</Button>
+                <NavDropdown.Item href="#action/3.4">
+                  Random Recipe 
                 </NavDropdown.Item>
               </NavDropdown>
               <Button onClick={handleShow}>Add Recipe </Button>
-              
           <div>
              <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Recipe</Modal.Title>
         </Modal.Header>
-        <Modal.Body>  <Form class="submitForm" onSubmit={ (event)=>{props.handleNewInput(event, props.recipe)}}>
+        <Modal.Body>  <Form class="submitForm" onSubmit={ (event)=>{props.handleNewInput(event, props.recipe.name)}}>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Name of Recipe" onChange={props.handleNewName} /><br/>
@@ -83,9 +89,9 @@ const Nav1 = (props) => {
       </Modal>
         </div>
               <Container className="navForm">
-              <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='Search Recipes' aria-label='Search' />
-            <Button>Search</Button> 
+              <form className='d-flex input-group w-auto' onSubmit={ (event)=>{returnNewSearch(event, props.recipe)}}>
+            <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
+            <input type="submit" value="Search"/>
 
           </form>
           </Container>
