@@ -70,7 +70,7 @@ const handleRandomRecipe = (event) =>{
     
     
  return (
- <div>
+ <div className='random'>
     <h1> Not sure what to make?</h1>
     <h3> Let us decide for you! </h3>
 

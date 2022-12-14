@@ -40,11 +40,9 @@ const handleClose = () => setShow(false);
               </Form>       
               </Modal.Body>
         <Modal.Footer>
-        <Button className="delete" onClick={ (event)=>{ props.handleDelete(props.recipe) } }>Delete</Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-            <Button variant="primary" onClick={ (event) => {props.handleEdit(event,props.recipe)}}>Submit Changes</Button>
+        <Button className="delete" class="danger" onClick={ (event)=>{ props.handleDelete(props.recipe) } }>Delete</Button>
+
+            <button type="button" class="btn btn-outline-primary" onClick={ (event) => {props.handleEdit(event,props.recipe)}}>Submit Changes</button>
         </Modal.Footer>
       </Modal>
     
@@ -58,16 +56,13 @@ const handleClose = () => setShow(false);
           <h4 className="card-title">{props.recipe.name}</h4>
         </div>
         <div className="back card-block">
-        
-        <Button type='button' variant="primary" onClick={handleShow}>
-        Make Changes
-        </Button>
             <ul>
-            <li>{props.recipe.time}</li>
-            <li>{props.recipe.allergens}</li>
+            <li>Approximate time to cook...{props.recipe.time}</li>
+            <li>Allergens to be mindful of .. {props.recipe.allergens}</li>
             </ul>
-
-             <br/>
+            <button type='button' class="btn btn-outline-primary" onClick={handleShow}>
+        Make Changes
+        </button>
         </div>
       </div>
     </div>

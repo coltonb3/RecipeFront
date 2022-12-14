@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Button, Form } from 'react-bootstrap' 
+import './index.css';
 
 import './App.css';
 
@@ -20,6 +21,7 @@ function App(props) {
 
   return (
     <>
+     <div className="bg">
     <Form class="submit" onSubmit={triggerLogin} className='inputForm'>
     <Form.Group className="mb-3" controlId="formBasic">
       <Form.Label>Login</Form.Label>
@@ -45,6 +47,7 @@ function App(props) {
         <Button input type='submit' value='Login' className='submitBtn'>Login</Button>
         </Form>
       {/* </form> */}
+      </div>
     </>
   );
 }
