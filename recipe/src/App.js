@@ -56,10 +56,7 @@ const App = () => {
       }
     })
   }
-  const handleLogout = () => {
-    setCurrentUser({})
-    handleToggleLogout()
-  }
+
   const handleToggleForm = () => {
     setToggleError(false)
     if(toggleLogin === true) {
@@ -68,11 +65,15 @@ const App = () => {
       setToggleLogin(true)
     }
   }
-  const handleToggleLogout = () => {
-    if(toggleLogout) {
+  const handleToggleLogout = (userObj) => {
+    console.log(userObj)
+    if(userObj === true) {
+      
       setToggleLogout(false)
+      setCurrentUser({})
     } else {
       setToggleLogout(true)
+      
     }
   }
 const handleNewRecipe = (event) => {
@@ -180,8 +181,9 @@ useEffect(() => {
     <div className="App">
       <div className='loggedOutDiv'> 
        
-        {toggleLogout ?
-          <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
+      {toggleLogout ?
+          null :
+          
           <div className='appFormDiv'>
             {toggleLogin ?
             <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
@@ -190,8 +192,8 @@ useEffect(() => {
             }
             <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
           </div>
-    
-        }
+}
+        
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>
@@ -202,6 +204,7 @@ useEffect(() => {
                       handleNewImage={handleNewImage}
                       handleNewAllergens={handleNewAllergens}
                       handleDelete={handleDelete}
+                      handleToggleLogout={handleToggleLogout}
                       handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
                <Nav/>
               <CardGroup>

@@ -7,11 +7,21 @@ import PopOut from '../modal/modal'
 const Nav1 = (props) => {
  
   const [show, setShow] = useState(false);
+  const [logout, setTrue] = useState('');
   const handleClose = () => setShow(false);
   
     const handleShow = () => {
        setShow(true)
-       console.log("click");
+       console.log("click"); 
+    }
+    const handleLogout = (event) => {
+      event.preventDefault() 
+        let userObj = {
+          logout: true
+          
+        }
+      
+      props.handleToggleLogout(userObj)
     }
 
     return (
@@ -30,11 +40,12 @@ const Nav1 = (props) => {
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#">Add a Recipe</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Random Recipe 
+                <NavDropdown.Item>
+                <Button onClick={handleLogout}>Logout</Button>
                 </NavDropdown.Item>
               </NavDropdown>
               <Button onClick={handleShow}>Add Recipe </Button>
+              
           <div>
              <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
