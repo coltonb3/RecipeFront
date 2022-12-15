@@ -26,3 +26,22 @@ code {
     monospace;
 }
 
+.search {
+  position: relative;
+  top: 50px;
+}
+
+.results {
+  position: relative;
+  top: 50px;
+}
+
+.search-btn {
+ 
+  font-weight: bold;
+  position: relative;
+  left: 10px;
+  width: 100px;
+  border-radius: 10px;
+  font-weight: bolder;
+}

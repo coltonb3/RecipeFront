@@ -43,6 +43,12 @@ const Nav1 = (props) => {
     console.log("click2");
     }
 
+  
+
+
+
+    
+
     return (
       <div className='navBar'>
         <Navbar className="fixed-top" bg="light" expand="lg">
@@ -128,15 +134,10 @@ const Nav1 = (props) => {
         </Modal.Footer>
       </Modal>
         </div>
-{/*///Search Form//*/}
 
-            <Container className="navForm">
-            <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='Search Recipes' aria-label='Search' />
-            <Button>Search</Button> 
 
-           </form>
-          </Container>
+          
+        
         
             </Nav>
           </Navbar.Collapse>
