@@ -8,9 +8,43 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  text-align: center;  
+}
+
+h2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.log {
+  color: black;
+  margin-bottom: 5px;
+
+}
+
+.inputForm {
+  color: black;  
+  background: aliceblue;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
+  height: 40%;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px black;
+}
+
 .logoutBtn {
-  position: relative;
-  left: 100%;
+  position: absolute;
+  right: 1%;
+}
+
+.recipeBtn {
+  position: absolute;
+  right: 20%;
 }
 
 .bg {
@@ -19,6 +53,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
 }
 
 code {
@@ -44,4 +79,8 @@ code {
   width: 100px;
   border-radius: 10px;
   font-weight: bolder;
+}
+
+.submitBtn {
+  margin-bottom: 5px;
 }
