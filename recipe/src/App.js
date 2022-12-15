@@ -204,7 +204,7 @@ useEffect(() => {
                )
                })}
 
-          <Container>
+          <Container className='search'>
           
             <form className='d-flex input-group w-auto' onSubmit={handleShowSearch}>
             <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
@@ -216,7 +216,7 @@ useEffect(() => {
           
          { showResults === true ?
           
-          <Container>
+          <Container className='results'>
             {recipes.map((recipe) => {
               return (
                 <>
