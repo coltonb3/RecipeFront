@@ -26,6 +26,21 @@ const App = () => {
   const [toggleLogout, setToggleLogout] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
 
+  
+  const [search, setSearch] = useState('');
+  
+
+  
+  
+   
+
+    const handleNewSearch = (event) => {
+      setSearch (event.target.value);
+    }
+
+    
+
+
   const handleCreateUser = (userObj) => {
     axios.post('http://localhost:3000/createaccount', userObj).then((response) => {
       if(response.data.username){
@@ -115,27 +130,7 @@ const handleNewDetails = (event) => {
         })
     })
   }
-  const handleForm = (event) => {
-    event.preventDefault();
-    axios.put(
-      `https://localhost:3000//${recipes._id}`,
-           {
-                 name: newName,
-                 species: newTime,
-                 breed: newAllergens,
-                 image: newImage,
-                 details: newDetails
-             }
-         )
-
-     .then(() => {
-      newName('');
-      newTime('');
-      newAllergens('');
-      newImage('');
-      newDetails('');
-     })
-    }
+  
   const handleEdit = (event, recipeData)=>{
     event.preventDefault();
     axios.put(`http://localhost:3000/${recipeData._id}`,
@@ -213,6 +208,18 @@ useEffect(() => {
                </React.Fragment>
                )
                })}
+
+          <Container>
+          
+                  
+              <form className='d-flex input-group w-auto' onSubmit={handleNewSearch}>
+            <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
+            <input type="submit" value="Search"/>
+
+          </form>
+                  
+          </Container>
+
               <CardGroup>
               {recipes.map((recipe) =>{
                   return (
@@ -233,6 +240,34 @@ useEffect(() => {
   
 
            </Container>
+           
+           <Container>
+            {recipes.map((recipe) => {
+              return (
+                <>
+                 { search === recipe.name ? 
+                  <React.Fragment key ={recipe._id}>           
+                  <MyRecipes recipe={recipe}
+                             handleEdit={handleEdit}
+                             handleNewName={handleNewName}
+                             handleNewTime={handleNewTime}
+                             handleNewImage={handleNewImage}
+                             handleNewAllergens={handleNewAllergens}
+                             handleDelete={handleDelete}
+                             handleNewFeatured={handleNewFeatured} /> 
+               </React.Fragment>
+               :
+               null
+                
+                }
+
+                </>
+              )
+
+            })}
+           </Container>
+
+
         </div>
           :
           null

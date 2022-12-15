@@ -7,8 +7,7 @@ import PopOut from '../modal/modal'
 const Nav1 = (props) => {
  
   const [show, setShow] = useState(false);
-  const [search, setSearch] = useState('');
-  const [results, setResults] = useState('');
+  
 
   const handleClose = () => setShow(false);
   
@@ -17,15 +16,7 @@ const Nav1 = (props) => {
        console.log("click");
     }
 
-    const handleNewSearch = (event) => {
-      setSearch(event.target.value);
-    }
-
-    const returnNewSearch = (event, data) =>{
-      console.log(data)
-      // { search === data ? setResults(data) : null}
-      
-    }
+  
 
 
 
@@ -88,13 +79,7 @@ const Nav1 = (props) => {
         </Modal.Footer>
       </Modal>
         </div>
-              <Container className="navForm">
-              <form className='d-flex input-group w-auto' onSubmit={ (event)=>{returnNewSearch(event, props.recipe)}}>
-            <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
-            <input type="submit" value="Search"/>
-
-          </form>
-          </Container>
+              
         
             </Nav>
           </Navbar.Collapse>
