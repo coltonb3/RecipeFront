@@ -28,7 +28,7 @@ const App = () => {
 
   
   const [search, setSearch] = useState('');
-  
+  const [showResults, setShowResults] = useState(false);
 
   
   
@@ -38,7 +38,10 @@ const App = () => {
       setSearch (event.target.value);
     }
 
-    
+    const handleShowSearch = (event) => {
+      event.preventDefault();
+      setShowResults(true)
+    }
 
 
   const handleCreateUser = (userObj) => {
@@ -211,20 +214,23 @@ useEffect(() => {
 
           <Container>
           
-                  
-              <form className='d-flex input-group w-auto' onSubmit={handleNewSearch}>
+            <form className='d-flex input-group w-auto' onSubmit={handleShowSearch}>
             <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
-            
+            <input type="submit" value="Search"/>
 
           </form>
                   
           </Container>
-
+          
+         { showResults === true ?
+          
           <Container>
             {recipes.map((recipe) => {
               return (
                 <>
                  { search === recipe.name ? 
+
+                 
                   <React.Fragment key ={recipe._id}>           
                   <MyRecipes recipe={recipe}
                              handleEdit={handleEdit}
@@ -246,6 +252,12 @@ useEffect(() => {
 
             })}
            </Container>
+
+           :
+
+           null
+
+          }
 
               <CardGroup>
               {recipes.map((recipe) =>{
