@@ -95,9 +95,13 @@ const Nav1 = (props) => {
               </Modal>
               </div> */}
 {/* ////Add Recipe Modal///// */}
-        <Button onClick={handleShow}>Add Recipe </Button>
+        <Button onClick={handleShow}>Add Recipe </Button> 
+        <Button type="button" class="btn btn-outline-primary" onClick={props.handleLogout} className='logoutBtn'>Logout</Button> 
+         
+         
+         
           <div className='add modal'>
-                        <Button onClick={handleShow}>Add Recipe </Button>
+                        {/* <Button onClick={handleShow}>Add Recipe </Button> */}
              <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
           <Modal.Title>Add Recipe</Modal.Title>
