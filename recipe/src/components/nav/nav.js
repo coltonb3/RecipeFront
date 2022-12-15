@@ -3,17 +3,44 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { Navbar, Container, Nav, NavDropdown , Button, Form, Modal } from 'react-bootstrap'
 import New from '../New/new'
 import PopOut from '../modal/modal'
+import Login from '../../LoginForm'
+import User from '../../NewUserForm'
+import axios from 'axios'
 
 const Nav1 = (props) => {
  
   const [show, setShow] = useState(false);
-  
-
+  const [loginShow, setLoginShow] = useState(false);
   const handleClose = () => setShow(false);
-  
-    const handleShow = () => {
-       setShow(true)
-       console.log("click");
+  const handleCloseLogin = () => setLoginShow(false);
+
+  const [toggleLogin, setToggleLogin] = useState(true)
+  const [toggleError, setToggleError] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [toggleLogout, setToggleLogout] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+
+ 
+
+  const handleLogout = () => {
+    setCurrentUser({})
+    handleToggleLogout()
+  }
+  const handleToggleLogout = () => {
+    if(toggleLogout) {
+      setToggleLogout(false)
+    } else {
+      setToggleLogout(true)
+    }
+  }
+  const handleShow = () => {
+     setShow(true)
+     console.log("click");
+    }
+  const handleShowLogin = () => {
+    setLoginShow(true)  
+    console.log("click2");
     }
 
   
@@ -23,9 +50,9 @@ const Nav1 = (props) => {
     
 
     return (
-      <div>
+      <div className='navBar'>
         <Navbar className="fixed-top" bg="light" expand="lg">
-        <Container>
+         <Container>
           <Navbar.Brand href="#home">Recipes</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -42,20 +69,48 @@ const Nav1 = (props) => {
                   Random Recipe 
                 </NavDropdown.Item>
               </NavDropdown>
-              <Button onClick={handleShow}>Add Recipe </Button>
-          <div>
+
+{/* ////Login Modal/// */}
+              {/* <Button onClick={handleShowLogin}>Login</Button>
+              <div className = 'loginModal'>
+              <Modal loginShow={loginShow} onHide={handleCloseLogin}>
+              <Modal.Header closeButton>
+                  <Modal.Title>Login</Modal.Title>
+                  </Modal.Header>
+              <Modal.Body>  
+                <Form className="submitForm" onSubmit={ (event)=>{props.handleNewInput(event, props.recipe)}}>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                      <Form.Label>Username </Form.Label>
+                  <Form.Control type="text" placeholder="Name of Recipe" onChange={props.handleNewName} /><br/>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                      <Form.Label>Password </Form.Label>
+                  <Form.Control type="text" placeholder="Cooking Time" onChange={props.handleNewTime} /><br/>
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+                   <Modal.Footer>
+                        <Button variant="primary" onClick={handleShowLogin}>Login</Button>
+                   </Modal.Footer>
+              </Modal>
+              </div> */}
+{/* ////Add Recipe Modal///// */}
+        <Button onClick={handleShow}>Add Recipe </Button>
+          <div className='add modal'>
+                        <Button onClick={handleShow}>Add Recipe </Button>
              <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+          <Modal.Header closeButton>
           <Modal.Title>Add Recipe</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>  <Form class="submitForm" onSubmit={ (event)=>{props.handleNewInput(event, props.recipe.name)}}>
-               <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Name</Form.Label>
+          </Modal.Header>
+          <Modal.Body> 
+             <Form class="submitForm" onSubmit={ (event)=>{props.handleNewInput(event, props.recipe)}}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Label>Name</Form.Label>
                 <Form.Control type="text" placeholder="Name of Recipe" onChange={props.handleNewName} /><br/>
-               </Form.Group>
+                </Form.Group>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Cooking Time </Form.Label>
-                <Form.Control type="text" placeholder="Cooking Time" onChange={props.handleNewTime} /><br/>
+               <Form.Control type="text" placeholder="Cooking Time" onChange={props.handleNewTime} /><br/>
                </Form.Group>
                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                 <Form.Label>Photo</Form.Label>
@@ -79,7 +134,10 @@ const Nav1 = (props) => {
         </Modal.Footer>
       </Modal>
         </div>
-              
+
+
+          
+        
         
             </Nav>
           </Navbar.Collapse>

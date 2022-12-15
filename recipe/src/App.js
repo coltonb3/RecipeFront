@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {Card, Navbar,Container,Button,Row,Col, CardGroup, Form} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import LoginForm from './LoginForm'
-import NewUserForm from './NewUserForm'
+import Login from './LoginForm'
+import User from './NewUserForm'
 import Nav from './components/nav/nav'
 import MyRecipes from './components/recipes/recipe'
 import Search from './components/search/search'
@@ -19,7 +19,6 @@ const App = () => {
   const [newAllergens, setNewAllergens] = useState ('');
   const [newFeatured, setNewFeatured] = useState (false);
   const [newDetails, setNewDetails] = useState ('');
-
   const [toggleLogin, setToggleLogin] = useState(true)
   const [toggleError, setToggleError] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -169,28 +168,21 @@ useEffect(() => {
 },[])
 
   return ( 
-
-
    <main>
-           
-
-
-    <div className="App">
+    <div class='bg-secondary text-white' className="App">
       <div className='loggedOutDiv'> 
        
-      {toggleLogout ?
-          <Button onClick={handleLogout} className='logoutBtn'>Logout</Button> :
-          
+        {toggleLogout ?
+          <Button type="button" class="btn btn-outline-primary" onClick={handleLogout} className='logoutBtn'>Logout</Button> :
           <div className='appFormDiv'>
             {toggleLogin ?
-            <LoginForm handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
+            <Login handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
             :
-            <NewUserForm handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
+            <User handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
             }
             <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
           </div>
-    
-      }
+        }
       </div>
       {currentUser.username ?
         <div className='loggedInDiv'>
@@ -276,8 +268,6 @@ useEffect(() => {
               }
               </CardGroup>
               <Search />
-  
-
            </Container>
            
            
