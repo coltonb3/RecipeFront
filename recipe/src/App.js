@@ -214,11 +214,38 @@ useEffect(() => {
                   
               <form className='d-flex input-group w-auto' onSubmit={handleNewSearch}>
             <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
-            <input type="submit" value="Search"/>
+            
 
           </form>
                   
           </Container>
+
+          <Container>
+            {recipes.map((recipe) => {
+              return (
+                <>
+                 { search === recipe.name ? 
+                  <React.Fragment key ={recipe._id}>           
+                  <MyRecipes recipe={recipe}
+                             handleEdit={handleEdit}
+                             handleNewName={handleNewName}
+                             handleNewTime={handleNewTime}
+                             handleNewImage={handleNewImage}
+                             handleNewAllergens={handleNewAllergens}
+                             handleDelete={handleDelete}
+                             handleNewFeatured={handleNewFeatured} /> 
+               </React.Fragment>
+               :
+               
+               null
+                
+                }
+
+                </>
+              )
+
+            })}
+           </Container>
 
               <CardGroup>
               {recipes.map((recipe) =>{
@@ -241,31 +268,7 @@ useEffect(() => {
 
            </Container>
            
-           <Container>
-            {recipes.map((recipe) => {
-              return (
-                <>
-                 { search === recipe.name ? 
-                  <React.Fragment key ={recipe._id}>           
-                  <MyRecipes recipe={recipe}
-                             handleEdit={handleEdit}
-                             handleNewName={handleNewName}
-                             handleNewTime={handleNewTime}
-                             handleNewImage={handleNewImage}
-                             handleNewAllergens={handleNewAllergens}
-                             handleDelete={handleDelete}
-                             handleNewFeatured={handleNewFeatured} /> 
-               </React.Fragment>
-               :
-               null
-                
-                }
-
-                </>
-              )
-
-            })}
-           </Container>
+           
 
 
         </div>
