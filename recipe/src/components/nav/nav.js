@@ -51,14 +51,15 @@ const Nav1 = (props) => {
 
     return (
       <div className='navBar'>
+        
         <Navbar className="fixed-top" bg="light" expand="lg">
          <Container>
-          <Navbar.Brand href="#home">Recipes</Navbar.Brand>
+         <h2>RecipeBook</h2>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>
-              <NavDropdown title="Filter" id="basic-nav-dropdown">
+              <NavDropdown title="Links" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -95,9 +96,13 @@ const Nav1 = (props) => {
               </Modal>
               </div> */}
 {/* ////Add Recipe Modal///// */}
-        <Button onClick={handleShow}>Add Recipe </Button>
+        <Button type="button" class="btn btn-outline-primary" className='recipeBtn' onClick={handleShow}>Add Recipe </Button> 
+        <Button type="button" class="btn btn-outline-primary" onClick={props.handleLogout} className='logoutBtn'>Logout</Button> 
+         
+         
+         
           <div className='add modal'>
-                        <Button onClick={handleShow}>Add Recipe </Button>
+                        {/* <Button onClick={handleShow}>Add Recipe </Button> */}
              <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
           <Modal.Title>Add Recipe</Modal.Title>

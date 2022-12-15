@@ -85,6 +85,7 @@ const App = () => {
     setCurrentUser({})
     handleToggleLogout()
   }
+
   const handleToggleForm = () => {
     setToggleError(false)
     if(toggleLogin === true) {
@@ -177,18 +178,24 @@ useEffect(() => {
 
   return ( 
    <main>
+    
     <div class='bg-secondary text-white' className="App">
+    
       <div className='loggedOutDiv'> 
+      
        
         {toggleLogout ?
-          <Button type="button" class="btn btn-outline-primary" onClick={handleLogout} className='logoutBtn'>Logout</Button> :
+       
+        null
+          :
           <div className='appFormDiv'>
+            
             {toggleLogin ?
-            <Login handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
+            <Login handleLogin={handleLogin} handleToggleForm={handleToggleForm} toggleError={toggleError} errorMessage={errorMessage}/>
             :
-            <User handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
+            <User handleCreateUser={handleCreateUser} handleToggleForm={handleToggleForm} toggleError={toggleError} errorMessage={errorMessage}/>
             }
-            <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
+            
           </div>
         }
       </div>
