@@ -37,12 +37,11 @@ code {
 }
 
 .search-btn {
-  border: none;
-  background: rgb(46, 214, 46);
-  color: white;
+ 
   font-weight: bold;
   position: relative;
   left: 10px;
   width: 100px;
   border-radius: 10px;
+  font-weight: bolder;
 }

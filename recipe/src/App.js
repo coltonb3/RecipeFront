@@ -27,9 +27,10 @@ const App = () => {
 
   
   const [search, setSearch] = useState('');
-  const [showResults, setShowResults] = useState(false);
+  const [showResults, setShowResults] = useState();
 
-  
+
+
   
    
 
@@ -40,6 +41,13 @@ const App = () => {
     const handleShowSearch = (event) => {
       event.preventDefault();
       setShowResults(true)
+      console.log(showResults)
+    }
+
+    const handleCloseSearch = (event) => {
+      event.preventDefault();
+      setShowResults(false)
+      console.log(showResults)
     }
 
 
@@ -206,9 +214,9 @@ useEffect(() => {
 
           <Container className='search'>
           
-            <form className='d-flex input-group w-auto' onSubmit={handleShowSearch}>
+            <form className='d-flex input-group w-auto'>
             <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
-            <input className='search-btn' type="submit" value="Search"/>
+            <Button type='button' variant='success' className='search-btn' value="Search"  onClick={handleShowSearch}> Search </Button>
 
           </form>
                   
