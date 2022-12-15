@@ -208,7 +208,7 @@ useEffect(() => {
           
             <form className='d-flex input-group w-auto' onSubmit={handleShowSearch}>
             <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
-            <input type="submit" value="Search"/>
+            <input className='search-btn' type="submit" value="Search"/>
 
           </form>
                   
