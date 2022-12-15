@@ -25,6 +25,24 @@ const App = () => {
   const [toggleLogout, setToggleLogout] = useState(false)
   const [currentUser, setCurrentUser] = useState({})
 
+  
+  const [search, setSearch] = useState('');
+  const [showResults, setShowResults] = useState(false);
+
+  
+  
+   
+
+    const handleNewSearch = (event) => {
+      setSearch (event.target.value);
+    }
+
+    const handleShowSearch = (event) => {
+      event.preventDefault();
+      setShowResults(true)
+    }
+
+
   const handleCreateUser = (userObj) => {
     axios.post('http://localhost:3000/createaccount', userObj).then((response) => {
       if(response.data.username){
@@ -114,27 +132,7 @@ const handleNewDetails = (event) => {
         })
     })
   }
-  const handleForm = (event) => {
-    event.preventDefault();
-    axios.put(
-      `https://localhost:3000//${recipes._id}`,
-           {
-                 name: newName,
-                 species: newTime,
-                 breed: newAllergens,
-                 image: newImage,
-                 details: newDetails
-             }
-         )
-
-     .then(() => {
-      newName('');
-      newTime('');
-      newAllergens('');
-      newImage('');
-      newDetails('');
-     })
-    }
+  
   const handleEdit = (event, recipeData)=>{
     event.preventDefault();
     axios.put(`http://localhost:3000/${recipeData._id}`,
@@ -189,17 +187,70 @@ useEffect(() => {
       {currentUser.username ?
         <div className='loggedInDiv'>
            <Container>
-               <Nav   handleEdit={handleEdit}
+           {recipes.map((recipe) =>{
+                  return (
+                    <React.Fragment key ={recipe._id}>  
+               <Nav   
+                      recipe={recipe}
+                      handleEdit={handleEdit}
                       handleNewName={handleNewName}
                       handleNewTime={handleNewTime}
                       handleNewImage={handleNewImage}
                       handleNewAllergens={handleNewAllergens}
                       handleDelete={handleDelete}
-                      handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} 
-                      toggleLogin={toggleLogin} toggleError={toggleError} errorMessage={errorMessage} 
-                      toggleLogout={toggleLogout} currentUser={currentUser} Login={Login}
-                      />
-               <Nav/>
+                      handleLogout={handleLogout}
+                      handleNewFeatured={handleNewFeatured} handleNewInput={handleNewInput} PopOut={PopOut} />
+               </React.Fragment>
+               )
+               })}
+
+          <Container className='search'>
+          
+            <form className='d-flex input-group w-auto' onSubmit={handleShowSearch}>
+            <input type='search' className='form-control' placeholder='Search Recipes' onChange={handleNewSearch} />
+            <input type="submit" value="Search"/>
+
+          </form>
+                  
+          </Container>
+          
+         { showResults === true ?
+          
+          <Container className='results'>
+            {recipes.map((recipe) => {
+              return (
+                <>
+                 { search === recipe.name ? 
+
+                 
+                  <React.Fragment key ={recipe._id}>           
+                  <MyRecipes recipe={recipe}
+                             handleEdit={handleEdit}
+                             handleNewName={handleNewName}
+                             handleNewTime={handleNewTime}
+                             handleNewImage={handleNewImage}
+                             handleNewAllergens={handleNewAllergens}
+                             handleDelete={handleDelete}
+                             handleNewFeatured={handleNewFeatured} /> 
+               </React.Fragment>
+               :
+               
+               null
+                
+                }
+
+                </>
+              )
+
+            })}
+           </Container>
+
+           :
+
+           null
+
+          }
+
               <CardGroup>
               {recipes.map((recipe) =>{
                   return (
@@ -218,6 +269,10 @@ useEffect(() => {
               </CardGroup>
               <Search />
            </Container>
+           
+           
+
+
         </div>
           :
           null

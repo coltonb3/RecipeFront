@@ -26,3 +26,13 @@ code {
     monospace;
 }
 
+.search {
+  position: relative;
+  top: 50px;
+}
+
+.results {
+  position: relative;
+  top: 50px;
+}
+
