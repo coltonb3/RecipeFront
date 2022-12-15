@@ -178,19 +178,24 @@ useEffect(() => {
 
   return ( 
    <main>
+    
     <div class='bg-secondary text-white' className="App">
+    
       <div className='loggedOutDiv'> 
+      
        
         {toggleLogout ?
+       
         null
           :
           <div className='appFormDiv'>
+            
             {toggleLogin ?
-            <Login handleLogin={handleLogin} toggleError={toggleError} errorMessage={errorMessage}/>
+            <Login handleLogin={handleLogin} handleToggleForm={handleToggleForm} toggleError={toggleError} errorMessage={errorMessage}/>
             :
-            <User handleCreateUser={handleCreateUser} toggleError={toggleError} errorMessage={errorMessage}/>
+            <User handleCreateUser={handleCreateUser} handleToggleForm={handleToggleForm} toggleError={toggleError} errorMessage={errorMessage}/>
             }
-            <Button onClick={handleToggleForm} className='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</Button>
+            
           </div>
         }
       </div>

@@ -22,9 +22,10 @@ function Login(props) {
   return (
     <>
      <div className="bg">
+     <h1>RecipeBook</h1>
     <Form class="submit" onSubmit={triggerLogin} className='inputForm'>
     <Form.Group className="mb-3" controlId="formBasic">
-      <Form.Label>Login</Form.Label>
+      <Form.Label class='log'>Login</Form.Label>
       <Form.Control type="text" placeholder="Username" className="textInput" onChange={(event)=>{setUsername(event.target.value)}}/>
       <Form.Text className="text-muted">
         We'll never share your email with anyone else.
@@ -32,7 +33,7 @@ function Login(props) {
     </Form.Group>
 
     <Form.Group className="mb-3" controlId="formBasicPassword">
-      <Form.Label>Password</Form.Label>
+      <Form.Label className='log'>Password</Form.Label>
       <Form.Control type="password" placeholder="Password" className='textInput'  onChange={(event)=> {setPassword(event.target.value)}}/>
     </Form.Group>
 
@@ -42,6 +43,7 @@ function Login(props) {
           null
         }
         <Button input type='submit' value='Login' className='submitBtn'>Login</Button>
+        <Button onClick={props.handleToggleForm} className='accountBtn'> {props.toggleLogin ? null : 'Need an account?'}</Button>
         </Form>
 
       </div>

@@ -20,14 +20,15 @@ const User = (props) => {
   return (
     <>
       <div className='bg'>
+        <h1>RecipeBook</h1>
             <Form class="submit" onSubmit={triggerCreateUser} className='inputForm'>
                 <Form.Group className="mb-3" controlId="formBasic">
-                <Form.Label>Create New User</Form.Label>
+                <Form.Label class='log'>Create New User</Form.Label>
                 <Form.Control type="text" placeholder="Username" class="textInput" onChange={(event)=>{setUsername(event.target.value)}}/>
                 </Form.Group>
 
                  <Form.Group className="mb-3" controlId="formBasicPassword">
-                 <Form.Label>Password</Form.Label>
+                 <Form.Label class='log'>Password</Form.Label>
                  <Form.Control type="password" placeholder="Password" className='textInput'  onChange={(event)=> {setPassword(event.target.value)}}/>
                 </Form.Group>
             {props.toggleError ?
@@ -36,7 +37,9 @@ const User = (props) => {
              :
             null
             }
-     <Button input type='submit' value='Login' className='submitBtn'>Login</Button>
+     <Button input type='submit' value='Login' className='submitBtn'>Create Account</Button>
+     <Button onClick={props.handleToggleForm} className='accountBtn'>{props.toggleLogin ? null : 'Already Have an Account?' }</Button>
+
       </Form>
       </div>
       </>
