@@ -235,7 +235,7 @@ useEffect(() => {
             {recipes.map((recipe) => {
               return (
                 <>
-                 { search === recipe.name ? 
+                 { search === recipe.name || recipe.allergens ? 
 
                  
                   <React.Fragment key ={recipe._id}>           
